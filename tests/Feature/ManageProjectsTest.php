@@ -81,9 +81,9 @@ class ManageProjectsTest extends TestCase
     /** @test */
     public function a_user_can_view_their_projects()
     {
-        $this->be(factory(User::class)->create());
-
-        $project = factory(Project::class)->create(['owner_id' => auth()->id()]);
+        $project = app(ProjectFactory::class)
+            ->ownedBy($this->signIn())
+            ->create();
 
         $this->get($project->path())
             ->assertSee($project->title)
