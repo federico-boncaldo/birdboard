@@ -70,11 +70,11 @@ class ManageProjectsTest extends TestCase
             ->ownedBy($this->signIn())
             ->create();
 
-        $this->patch($project->path(), [
-            'notes' => 'Changed'
-        ])->assertRedirect($project->path());
+        $attributes = ['notes' => 'Changed'];
+        $this->patch($project->path(), $attributes)
+            ->assertRedirect($project->path());
 
-        $this->assertDatabaseHas('projects', ['notes' => 'Changed']);
+        $this->assertDatabaseHas('projects', $attributes);
 
     }
 
