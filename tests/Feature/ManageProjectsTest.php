@@ -107,7 +107,7 @@ class ManageProjectsTest extends TestCase
 
         $project = factory(Project::class)->create();
 
-        $this->patch($project->path(), [])->assertStatus(403);
+        $this->patch($project->path())->assertStatus(403);
     }
 
     /** @test */
