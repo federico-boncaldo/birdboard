@@ -8,6 +8,7 @@ use Tests\TestCase;
 use App\User;
 use App\Project;
 use Illuminate\Support\Str;
+use Tests\Setup\ProjectFactory;
 
 class ManageProjectsTest extends TestCase
 {
@@ -65,9 +66,9 @@ class ManageProjectsTest extends TestCase
     /** @test */
     public function a_user_can_update_a_project()
     {
-        $this->signIn();
-
-        $project = factory(Project::class)->create(['owner_id' => auth()->id()]);
+        $project = app(ProjectFactory::class)
+            ->ownedBy($this->signIn())
+            ->create();
 
         $this->patch($project->path(), [
             'notes' => 'Changed'
