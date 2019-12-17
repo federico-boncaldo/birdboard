@@ -26,6 +26,8 @@ class ProjectsTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
+        $this->actingAs(factory(User::class)->create());
+
         $attributes = [
             'title' => $this->faker->sentence,
             'description' => $this->faker->paragraph
@@ -51,6 +53,8 @@ class ProjectsTest extends TestCase
     /** @test */
     public function a_project_requires_a_title()
     {
+        $this->actingAs(factory(User::class)->create());
+
         $attributes = factory(Project::class)->raw(['title' => '']);
         $this->post('/projects', $attributes)->assertSessionHasErrors('title');
     }
@@ -58,8 +62,9 @@ class ProjectsTest extends TestCase
     /** @test */
     public function a_project_requires_a_description()
     {
+        $this->actingAs(factory(User::class)->create());
+
         $attributes = factory(Project::class)->raw(['description' => '']);
         $this->post('/projects', $attributes)->assertSessionHasErrors('description');
     }
-
 }
