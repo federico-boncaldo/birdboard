@@ -15,6 +15,8 @@ class ManageProjectsTest extends TestCase
     /** @test */
     public function guests_cannot_create_a_project()
     {
+        $this->get('/projects/create')->assertRedirect('login');
+
         $attributes = factory(Project::class)->raw();
         $this->post('/projects', $attributes)->assertRedirect('login');
     }
