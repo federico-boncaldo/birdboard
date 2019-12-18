@@ -15,11 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/projects', 'ProjectsController@index');
+Route::get('/projects', 'ProjectsController@index')->middleware('auth');
 
 Route::post('/projects', 'ProjectsController@store')->middleware('auth');
 
-Route::get('/projects/{project}', 'ProjectsController@show');
+Route::get('/projects/{project}', 'ProjectsController@show')->middleware('auth');
 
 Auth::routes();
 
