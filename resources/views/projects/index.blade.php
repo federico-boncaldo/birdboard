@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Birdboard</title>
-</head>
-<body>
+@extends('layout')
+
+@section('content')
 	<h1>Birdboard</h1>
 
 	<div>
@@ -19,5 +16,4 @@
 			@endforelse
 		</ul>
 	</div>
-</body>
-</html>
+@endsection
