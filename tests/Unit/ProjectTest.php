@@ -7,6 +7,7 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Project;
+use App\User;
 
 class ProjectTest extends TestCase
 {
@@ -20,5 +21,13 @@ class ProjectTest extends TestCase
 		$project = factory(Project::class)->create();
 
 		$this->assertEquals('/projects/' . $project->id, $project->path());
+	}
+
+	/** @test */
+	public function it_has_a_owner()
+	{
+		$project = factory(Project::class)->create();
+
+		$this->assertInstanceOf(User::class, $project->owner);
 	}
 }
