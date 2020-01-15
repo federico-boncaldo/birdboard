@@ -61,7 +61,7 @@ class ProjectTaskTest extends TestCase
 
         $task = $project->addTask('test task');
 
-        $this->patch($project->path() . '/tasks/' . $task->id , ['body' => 'changed'])
+        $this->patch($task->path() , ['body' => 'changed'])
             ->assertStatus(403);
 
         $this->assertDatabaseMissing('tasks', ['body' => 'changed']);
@@ -93,7 +93,7 @@ class ProjectTaskTest extends TestCase
 
         $task = $project->addTask('test task');
 
-        $this->patch($project->path() . '/tasks/' . $task->id, [
+        $this->patch($task->path(), [
             'body' => 'changed',
             'completed' => true
         ]);
