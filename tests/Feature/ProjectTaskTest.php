@@ -53,6 +53,21 @@ class ProjectTaskTest extends TestCase
     }
 
     /** @test */
+    public function only_the_owner_of_a_project_may_update_a_tasks()
+    {
+        $this->signIn();
+
+        $project = factory('App\Project')->create();
+
+        $task = $project->addTask('test task');
+
+        $this->patch($project->path() . '/tasks/' . $task->id , ['body' => 'changed'])
+            ->assertStatus(403);
+
+        $this->assertDatabaseMissing('tasks', ['body' => 'changed']);
+    }
+
+    /** @test */
     public function a_task_requires_a_body()
     {
         $this->signIn();
