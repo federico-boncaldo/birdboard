@@ -34,6 +34,13 @@ class ProjectsController extends Controller
         return redirect($project->path());
     }
 
+    public function update(Project $project)
+    {
+        $project->update(request(['notes']));
+
+        return redirect($project->path());
+    }
+
     public function show(Project $project)
     {
     	if(auth()->user()->isNot($project->owner)){
