@@ -21,13 +21,7 @@ class ProjectsController extends Controller
 
     public function store()
     {
-        $attributes = request()->validate(
-            [
-                'title' => 'required',
-                'description' => 'required',
-                'notes' => 'min:3'
-            ]
-        );
+        $attributes = $this->validateInput();
 
         $project = auth()->user()->projects()->create($attributes);
 
@@ -38,7 +32,9 @@ class ProjectsController extends Controller
     {
         $this->authorize('update', $project);
 
-        $project->update(request(['notes']));
+        $attributes = $this->validateInput();
+
+        $project->update($attributes);
 
         return redirect($project->path());
     }
@@ -48,5 +44,16 @@ class ProjectsController extends Controller
         $this->authorize('update', $project);
 
         return view('projects.show', compact('project'));
+    }
+
+    private function validateInput()
+    {
+        return request()->validate(
+            [
+                'title' => 'required',
+                'description' => 'required',
+                'notes' => 'min:3'
+            ]
+        );
     }
 }
