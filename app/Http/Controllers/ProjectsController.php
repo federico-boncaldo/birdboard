@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Project;
+use App\Http\Requests\UpdateProjectRequest;
 
 class ProjectsController extends Controller
 {
@@ -33,13 +34,9 @@ class ProjectsController extends Controller
         return view('projects.edit', compact('project'));
     }
 
-    public function update(Project $project)
+    public function update(UpdateProjectRequest $request, Project $project)
     {
-        $this->authorize('update', $project);
-
-        $attributes = $this->validateInput();
-
-        $project->update($attributes);
+        $request->persist();
 
         return redirect($project->path());
     }
