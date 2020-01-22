@@ -40,7 +40,7 @@ class Task extends Model
     {
         $this->update(['completed' => true]);
 
-        $task->project->recordActivity('completed_task');
+        $this->project->recordActivity('completed_task');
     }
 
 }
