@@ -36,11 +36,22 @@ class Task extends Model
     	return '/projects/' . $this->project->id . '/tasks/' . $this->id;
     }
 
+    /**
+     * Set the completed value to true for the task
+     */
     public function complete()
     {
         $this->update(['completed' => true]);
 
         $this->project->recordActivity('completed_task');
+    }
+
+    /**
+     * Set the completed value to true for the task
+     */
+    public function incomplete()
+    {
+        $this->update(['completed' => false]);
     }
 
 }
