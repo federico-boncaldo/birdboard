@@ -27,8 +27,10 @@ class ProjectTasksController extends Controller
 
         $task->update(['body' => request('body')]);
 
-        if(request()->has('completed')) {
+        if(request('completed')) {
             $task->complete();
+        }else{
+            $task->incomplete();
         }
 
     	return redirect($project->path());
