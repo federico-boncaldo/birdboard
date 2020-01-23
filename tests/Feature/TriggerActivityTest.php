@@ -18,7 +18,12 @@ class TriggerActivityTest extends TestCase
         $project = ProjectFactory::create();
 
         $this->assertCount(1, $project->activity);
-        $this->assertEquals('created', $project->activity->last()->description);
+
+        tap($project->activity->last(), function($activity){
+            $this->assertEquals('created', $activity->description);
+
+            $this->assertNull($activity->changes);
+        });
     }
 
     /** @test */
