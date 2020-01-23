@@ -13,6 +13,8 @@ class Project extends Model
     	'owner_id'
     ];
 
+    public $old = [];
+
     public function path()
     {
     	return "/projects/{$this->id}";
@@ -44,6 +46,12 @@ class Project extends Model
      */
     public function recordActivity(string $description)
     {
-        $this->activity()->create(compact('description'));
+        $this->activity()->create([
+            'description' => $description,
+            'changes' => [
+                'before' => array_diff($this->old, $this->getAttributes()),
+                'after' => $this->getChanges()
+            ]
+        ]);
     }
 }
