@@ -47,4 +47,22 @@ class Task extends Model
         $this->project->recordActivity('uncompleted_task');
     }
 
+    public function activity()
+    {
+        //polymorphic hasMany relationship - anything can trigger and have activities
+        return $this->morphMany(Activity::class, 'subject')->latest();
+    }
+
+    /**
+     * Create a new activity
+     * @param  string $description activity description
+     */
+    public function recordActivity(string $description)
+    {
+        $this->activity()->create([
+            'project_id' => $this->project_id,
+            'description' => $description
+        ]);
+    }
+
 }
