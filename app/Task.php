@@ -34,7 +34,7 @@ class Task extends Model
     {
         $this->update(['completed' => true]);
 
-        $this->project->recordActivity('completed_task');
+        $this->recordActivity('completed_task');
     }
 
     /**
@@ -44,7 +44,7 @@ class Task extends Model
     {
         $this->update(['completed' => false]);
 
-        $this->project->recordActivity('uncompleted_task');
+        $this->recordActivity('uncompleted_task');
     }
 
     public function activity()
