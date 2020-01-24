@@ -9,20 +9,22 @@ class Project extends Model
     use RecordsActivity;
 
     protected $fillable = [
-    	'title',
-    	'description',
+        'title',
+        'description',
         'notes',
-    	'owner_id'
+        'owner_id'
     ];
+
+    protected static $recordableEvents = ['created', 'updated'];
 
     public function path()
     {
-    	return "/projects/{$this->id}";
+        return "/projects/{$this->id}";
     }
 
     public function owner()
     {
-    	return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function tasks()
@@ -39,5 +41,4 @@ class Project extends Model
     {
         return $this->hasMany(Activity::class)->latest();
     }
-
 }

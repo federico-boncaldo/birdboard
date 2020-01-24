@@ -8,25 +8,27 @@ class Task extends Model
 {
     use RecordsActivity;
 
-	protected $fillable = [
-		'body',
-		'completed'
-	];
+    protected $fillable = [
+        'body',
+        'completed'
+    ];
 
-	protected $touches = ['project'];
+    protected $touches = ['project'];
 
     protected $casts = [
         'completed' => 'boolean'
     ];
 
+    protected static $recordableEvents = ['created', 'deleted'];
+
     public function project()
     {
-    	return $this->belongsTo(Project::class);
+        return $this->belongsTo(Project::class);
     }
 
     public function path()
     {
-    	return '/projects/' . $this->project->id . '/tasks/' . $this->id;
+        return '/projects/' . $this->project->id . '/tasks/' . $this->id;
     }
 
     /**
@@ -48,5 +50,4 @@ class Task extends Model
 
         $this->recordActivity('uncompleted_task');
     }
-
 }
