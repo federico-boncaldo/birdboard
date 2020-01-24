@@ -32,11 +32,7 @@ trait RecordsActivity
 
     protected function activityDescription(string $description)
     {
-        if (class_basename($this) !== 'Project') {
-            return "{$description}_" . strtolower(class_basename($this));
-        }
-
-        return $description;
+        return "{$description}_" . strtolower(class_basename($this));
     }
 
     protected static function recordableEvents()
