@@ -7,11 +7,17 @@ use Illuminate\Support\Arr;
 trait RecordsActivity
 {
 	/**
-	 * Model old attributes
+	 * The model's old attributes
 	 * @var array
 	 */
     public $old = [];
 
+    public static function bootRecordsActivity()
+    {
+    	static::updating(function ($model){
+    		$model->old = $model->getOriginal();
+    	});
+    }
     /**
      * Create a new activity
      * @param  string $description activity description
