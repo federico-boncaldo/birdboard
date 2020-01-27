@@ -56,6 +56,21 @@ class ManageProjectsTest extends TestCase
     }
 
     /** @test */
+    public function a_user_can_delete_a_project()
+    {
+        $this->withoutExceptionHandling();
+
+        $project = app(ProjectFactory::class)
+            ->ownedBy($this->signIn())
+            ->create();
+
+        $this->delete($project->path())
+            ->assertRedirect('/projects');
+
+        $this->assertDatabaseMissing('projects', $project->only('id'));
+    }
+
+    /** @test */
     public function a_user_can_update_a_project()
     {
         $project = app(ProjectFactory::class)
