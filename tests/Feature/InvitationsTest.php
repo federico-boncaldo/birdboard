@@ -23,9 +23,22 @@ class InvitationsTest extends TestCase
 
         $this->actingAs($project->owner)->post($project->path() . '/invitations', [
             'email' => $userToInvite->email
-        ]); // invite a user (need to figure out the URL)
+        ]);
 
         $this->assertTrue($project->members->contains($userToInvite));
+    }
+
+    /** @test */
+    public function the_invited_email_address_must_be_associated_with_a_valid_birdboard_account()
+    {
+        $project = ProjectFactory::create();
+
+        $this->actingAs($project->owner)->post($project->path() . '/invitations', [
+            'email' => 'notauser@example.com'
+        ])
+        ->assertSessionHasErrors([
+            'email' => 'The user you are inviting must have a Birdboard account.'
+        ]);
     }
 
     /** @test */
