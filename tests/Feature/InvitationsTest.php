@@ -21,21 +21,22 @@ class InvitationsTest extends TestCase
     }
 
     /** @test */
-    public function a_project_can_invite_a_user()
+    public function a_project_owner_can_invite_a_user()
     {
         $project = ProjectFactory::create();
 
         $userToInvite = factory(User::class)->create();
 
-        $this->actingAs($project->owner)->post($project->path() . '/invitations', [
-            'email' => $userToInvite->email
+        $this->actingAs($project->owner)
+            ->post($project->path() . '/invitations', [
+                'email' => $userToInvite->email
         ]);
 
         $this->assertTrue($project->members->contains($userToInvite));
     }
 
     /** @test */
-    public function the_invited_email_address_must_be_associated_with_a_valid_birdboard_account()
+    public function the_email_address_must_be_associated_with_a_valid_birdboard_account()
     {
         $project = ProjectFactory::create();
 
