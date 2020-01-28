@@ -30,7 +30,8 @@ class InvitationsTest extends TestCase
         $this->actingAs($project->owner)
             ->post($project->path() . '/invitations', [
                 'email' => $userToInvite->email
-        ]);
+            ])
+            ->assertRedirect($project->path());
 
         $this->assertTrue($project->members->contains($userToInvite));
     }
