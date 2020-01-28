@@ -13,10 +13,8 @@ class InvitationsTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function a_project_can_invite_a_user()
+    public function invited_users_may_update_project_details()
     {
-        $this->withoutExceptionHandling();
-
         $project = ProjectFactory::create();
 
         $project->invite($newUser = factory(User::class)->create());
