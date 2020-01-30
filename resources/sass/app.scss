@@ -17,6 +17,7 @@
 
 .card {
 	@apply .bg-card .mr-4 .p-5 .rounded-lg .shadow;
+	color: var(--text-default-color);
 }
 
 .theme-light {
@@ -24,6 +25,7 @@
 	--card-background-color: white;
 	--button-background-color: #47cdff;
 	--header-background-color: white;
+	--text-default-color: #222;
 }
 
 .theme-dark {
