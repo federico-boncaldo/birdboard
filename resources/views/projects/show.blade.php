@@ -32,7 +32,7 @@
 							@method('PATCH')
 							@csrf
 							<div class="flex">
-								<input class="w-full {{ $task->completed ? 'text-default' : '' }}" name="body" value="{{ $task->body }}">
+								<input class="bg-card w-full text-default {{ $task->completed ? 'text-default' : '' }}" name="body" value="{{ $task->body }}">
 								<input type="checkbox" name="completed" onChange="this.form.submit()" {{ $task->completed ? 'checked' : '' }}>
 							</div>
 						</form>
@@ -42,7 +42,7 @@
 				<div class="card mb-3">
 					<form method="POST" action="{{ $project->path() . '/tasks'}}" >
 						@csrf
-						<input class="w-full" placeholder="Add a new task..." name="body">
+						<input class="bg-card text-default w-full" placeholder="Add a new task..." name="body">
 					</form>
 				</div>
 
