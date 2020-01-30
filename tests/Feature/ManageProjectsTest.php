@@ -35,11 +35,7 @@ class ManageProjectsTest extends TestCase
 
         $this->get('/projects/create')->assertStatus(200);
 
-        $attributes = [
-            'title' => $this->faker->sentence,
-            'description' => $this->faker->paragraph,
-            'notes' => 'General notes here.'
-        ];
+        $attributes = factory(Project::class)->raw(['owner_id' => auth()->id()]);
 
         $response = $this->post('/projects', $attributes);
 
