@@ -1,5 +1,11 @@
 module.exports = {
   theme: {
+    backgroundColor:{
+    	page: 'var(--page-background-color)', //bg-page
+    	card: 'var(--card-background-color)',
+    	button: 'var(--button-background-color)',
+    	header: 'var(--header-background-color)'
+    },
     extend: {
 	    boxShadow: {
 	    	default: '0 0 5px 0 rgba(0, 0, 0, 0.08)'
@@ -11,7 +17,8 @@ module.exports = {
 	    	'blue' : '#47cdff',
 	    	'blue-light' : '#8ae2f2',
 	    	'red' : '#FF0000',
-	    }
+	    	'default' : 'var(--text-default-color)'
+	    },
     },
   },
   variants: {},
