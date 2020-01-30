@@ -20,7 +20,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
-<body class="theme-dark bg-page">
+<body class="theme-light bg-page">
     <div id="app">
         <nav class="bg-header section">
             <div class="container mx-auto">
@@ -41,18 +41,16 @@
 
                     <div>
                         <!-- Right Side Of Navbar -->
-                        <ul class="navbar-nav ml-auto list-reset">
+                        <div class="flex items-center navbar-nav ml-auto list-reset">
                             <!-- Authentication Links -->
                             @guest
-                                <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
                                 @if (Route::has('register'))
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                    </li>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 @endif
                             @else
+                                <theme-switcher></theme-switcher>
+
                                 <li class="nav-item dropdown">
                                     <a
                                         class="flex items-center text-default no-underline text-sm"
@@ -70,7 +68,7 @@
                                     </a>
                                 </li>
                             @endguest
-                        </ul>
+                        </div>
                     </div>
                 </div>
             </div>
