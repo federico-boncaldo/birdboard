@@ -22,9 +22,11 @@ class ProjectsController extends Controller
 
     public function store()
     {
-        $attributes = $this->validateInput();
+        $project = auth()->user()->projects()->create($this->validateRequest());
 
-        $project = auth()->user()->projects()->create($attributes);
+        if(request()->wantsJson()) {
+            return ['message' => $project->path()];
+        }
 
         return redirect($project->path());
     }
@@ -48,7 +50,7 @@ class ProjectsController extends Controller
         return view('projects.show', compact('project'));
     }
 
-    private function validateInput()
+    private function validateRequest()
     {
         return request()->validate(
             [
