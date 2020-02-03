@@ -50,23 +50,27 @@
                                 @endif
                             @else
                                 <theme-switcher></theme-switcher>
+                                <dropdown align="right" width="200px">
+                                    <template v-slot:trigger>
+                                        <button
+                                            class="flex items-center text-default no-underline text-sm focus:outline-none"
+                                        >
+                                            <img width="35"
+                                                 class="rounded-full mr-3"
+                                                 src="{{ gravatar_url(auth()->user()->email) }}">
 
-                                <li class="nav-item dropdown">
-                                    <a
-                                        class="flex items-center text-default no-underline text-sm"
-                                        href="#" role="button"
-                                        data-toggle="dropdown"
-                                        aria-haspopup="true"
-                                        aria-expanded="false"
-                                        v-pre
-                                    >
-                                        <img width="35"
-                                             class="rounded-full mr-3"
-                                             src="{{ gravatar_url(auth()->user()->email) }}">
+                                            {{ Auth::user()->name }}
+                                        </button>
+                                    </template>
 
-                                        {{ Auth::user()->name }}
-                                    </a>
-                                </li>
+                                    <form id="logout-form" method="POST" action="/logout">
+                                        @csrf
+                                        <button type="submit" class="dropdown-menu-link w-full text-left">Logout</button>
+                                    </form>
+
+                                </dropdown>
+
+
                             @endguest
                         </div>
                     </div>
