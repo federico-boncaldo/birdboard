@@ -24,6 +24,10 @@ class ProjectsController extends Controller
     {
         $project = auth()->user()->projects()->create($this->validateRequest());
 
+        if(request()->has('tasks')) {
+            $project->addTasks(request('tasks'));
+        }
+
         if(request()->wantsJson()) {
             return ['message' => $project->path()];
         }
@@ -56,8 +60,7 @@ class ProjectsController extends Controller
             [
                 'title' => 'sometimes|required',
                 'description' => 'sometimes|required',
-                'notes' => 'nullable'
-            ]
+                'notes' => 'nullable'            ]
         );
     }
 
