@@ -13,7 +13,7 @@ Within the project page, is possible as well to add general notes and visualise 
 ## Requirements
 
 The project requires [Composer](https://getcomposer.org/download/) and [npm](https://www.npmjs.com/get-npm) to install all the dependencies.
-[Vagrant](https://www.vagrantup.com/downloads.html) is necessary together with a compatible hypervisor (you can find a list [here](https://laravel.com/docs/6.x/homestead#first-steps) ) if the user wants to run the project in a development environment with [Laravel Homestead](https://laravel.com/docs/6.x/homestead)
+[Vagrant](https://www.vagrantup.com/downloads.html) is necessary together with a compatible hypervisor (you can find a list [here](https://laravel.com/docs/6.x/homestead#first-steps) ) if the user wants to run the project in a development environment with [Laravel Homestead](https://laravel.com/docs/6.x/homestead).
 Otherwise please refer to the [server requirements](https://laravel.com/docs/6.x/installation#server-requirements) in Laravel documentation.
 
 ## Local environment configuration
