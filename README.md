@@ -10,6 +10,10 @@ From the project page, the owner can invite new users who will have only the per
 
 Within the project page, is possible as well to add general notes and visualise all user actions related to that project.
 
+## Test the app on Heroku
+
+You can find [here](http://birdboard-app.herokuapp.com) the web application hosted on Heroku for testing purposes.
+
 ## Requirements
 
 The project requires [Composer](https://getcomposer.org/download/) and [npm](https://www.npmjs.com/get-npm) to install all the dependencies.
