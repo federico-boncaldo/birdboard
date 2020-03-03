@@ -64,5 +64,7 @@
                 <button type="submit" class="button is-link mr-2">Register</button>
             </div>
         </div>
+
+        @include ('errors')
     </form>
 @endsection
